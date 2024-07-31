@@ -1,15 +1,14 @@
-title: example.com
+title: Moshe Deitsch
 description: "Satellite - jekyll blog theme"
 logo_img: "/assets/img/favicon.webp"
-profile_img: "/assets/img/profile.webp"
+profile_img: "https://avatars.githubusercontent.com/u/41856538?v=4"
 
 # Social Links
-email: example@gmail.com
-github_username: github
-twitter_username: twitter
-instagram_username: instagram
-linkedin_username: linkedin
-facebook_username: facebook
+email: me@modeitsch.com
+github_username: modeitsch
+twitter_username: modeitsch
+instagram_username: modeitsch
+linkedin_username: moshe-deitsch
 
 # External API
 giscus_repo: "byanko55/jekyll-theme-satellite"
