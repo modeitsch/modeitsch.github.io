@@ -1,6 +1,6 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
+    "name": "Modeitsch",
     "email": "none@example.org",
     "phone": "",
     "website": "https://academicpages.github.io",
@@ -19,14 +19,9 @@
         "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
       },
       {
-        "network": "ORCID",
-        "username": "",
-        "url": "http://orcid.org/yourorcidurl"
-      },
-      {
         "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "modeitsch",
+        "url": "https://github.com/modeitsch"
       }
     ]
   },
