@@ -3,6 +3,17 @@ import { error } from '@sveltejs/kit';
 import fs from 'fs';
 import path from 'path';
 
+export async function entries() {
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  return filenames
+    .filter(name => name.endsWith('.md'))
+    .map(name => ({
+      slug: name.replace('.md', '')
+    }));
+}
+
 export async function load({ params }) {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const filePath = path.join(postsDirectory, `${params.slug}.md`);
