@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { theme, toggleTheme } from '../stores/theme.js';	import { Moon, Sun, Menu, X, Home, User, Briefcase, Mail } from 'lucide-svelte';
+	import { theme, toggleTheme } from '../stores/theme.js';	import { Moon, Sun, Menu, X, Home, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
 	
 	let mobileMenuOpen = false;
 	$: currentPath = $page.url.pathname;
@@ -37,6 +37,11 @@
 						<Briefcase size={16} />
 						<span>Projects</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath === '/projects' ? 'w-full' : ''}"></span>
+					</a>
+					<a href="/blog" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath.startsWith('/blog') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+						<BookOpen size={16} />
+						<span>Blog</span>
+						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath.startsWith('/blog') ? 'w-full' : ''}"></span>
 					</a>
 					<a href="/contact" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/contact' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<Mail size={16} />
@@ -104,6 +109,14 @@
 					>
 						<Briefcase size={18} />
 						<span>Projects</span>
+					</a>
+					<a
+						href="/blog"
+						class="flex items-center space-x-3 px-4 py-3 text-base font-medium transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 {currentPath.startsWith('/blog') ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}"
+						on:click={() => mobileMenuOpen = false}
+					>
+						<BookOpen size={18} />
+						<span>Blog</span>
 					</a>
 					<a
 						href="/contact"
