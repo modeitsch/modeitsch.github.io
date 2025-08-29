@@ -8,8 +8,11 @@
     "deploy": "npm run build && gh-pages -d build"
   },
   "dependencies": {
+    "gsap": "^3.13.0",
     "lucide-svelte": "^0.364.0",
-    "marked": "^15.0.12"
+    "marked": "^15.0.12",
+    "three": "^0.179.1",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.0",
