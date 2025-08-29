@@ -56,6 +56,15 @@
       }
       
       const THREE = await import('three');
+      
+      // Wait for canvas to be available in DOM
+      await new Promise(resolve => setTimeout(resolve, 50));
+      
+      // Double-check canvas is available
+      if (!canvas) {
+        throw new Error('Canvas element not mounted');
+      }
+      
       initThree(THREE);
       animate();
       window.addEventListener('resize', handleResize);
@@ -84,6 +93,11 @@
   });
 
   function initThree(THREE) {
+    // Check if canvas is available
+    if (!canvas) {
+      throw new Error('Canvas element not available');
+    }
+
     // Scene setup
     scene = new THREE.Scene();
     
@@ -100,10 +114,10 @@
     renderer = new THREE.WebGLRenderer({ 
       canvas, 
       alpha: true,
-      antialias: true 
+      antialias: performanceSettings.quality === 'high'
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, performanceSettings.quality === 'high' ? 2 : 1));
 
     // Create floating geometric shape
     geometry = new THREE.IcosahedronGeometry(1.5, 1);
@@ -189,11 +203,12 @@
 
 {#if showFallback}
   <ThreeBackgroundFallback />
-{:else if isLoading}
-  <div class="three-loading">
-    <LoadingSpinner size="medium" message="Initializing 3D background..." />
-  </div>
 {:else}
+  {#if isLoading}
+    <div class="three-loading">
+      <LoadingSpinner size="medium" message="Initializing 3D background..." />
+    </div>
+  {/if}
   <canvas bind:this={canvas} class="three-canvas" aria-hidden="true" class:ready={isReady}></canvas>
 {/if}
 

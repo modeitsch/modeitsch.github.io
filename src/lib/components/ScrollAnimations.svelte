@@ -10,40 +10,55 @@
     
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate hero text
-    gsap.from('.hero-title', {
-      y: 100,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power4.out',
-      stagger: 0.2
-    });
+    // Wait for DOM to be fully rendered
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-    gsap.from('.hero-subtitle', {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      delay: 0.5,
-      ease: 'power3.out'
-    });
+    // Animate hero text (with existence check)
+    const heroTitles = document.querySelectorAll('.hero-title');
+    if (heroTitles.length > 0) {
+      gsap.from('.hero-title', {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power4.out',
+        stagger: 0.2
+      });
+    }
 
-    gsap.from('.hero-buttons', {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.8,
-      ease: 'power3.out'
-    });
+    const heroSubtitles = document.querySelectorAll('.hero-subtitle');
+    if (heroSubtitles.length > 0) {
+      gsap.from('.hero-subtitle', {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power3.out'
+      });
+    }
 
-    // Animate stats
-    gsap.from('.stat-item', {
-      scale: 0,
-      opacity: 0,
-      duration: 0.8,
-      delay: 1,
-      stagger: 0.1,
-      ease: 'back.out(1.7)'
-    });
+    const heroButtons = document.querySelectorAll('.hero-buttons');
+    if (heroButtons.length > 0) {
+      gsap.from('.hero-buttons', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        delay: 0.8,
+        ease: 'power3.out'
+      });
+    }
+
+    // Animate stats (with existence check)
+    const statItems = document.querySelectorAll('.stat-item');
+    if (statItems.length > 0) {
+      gsap.from('.stat-item', {
+        scale: 0,
+        opacity: 0,
+        duration: 0.8,
+        delay: 1,
+        stagger: 0.1,
+        ease: 'back.out(1.7)'
+      });
+    }
 
     // Scroll-triggered animations for sections
     gsap.utils.toArray('.section-title').forEach(title => {
@@ -79,17 +94,21 @@
       });
     });
 
-    // Parallax effect for hero section
-    gsap.to('.hero-bg', {
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-      },
-      y: 150,
-      ease: 'none'
-    });
+    // Parallax effect for hero section (with existence check)
+    const heroBg = document.querySelector('.hero-bg');
+    const heroSection = document.querySelector('.hero-section');
+    if (heroBg && heroSection) {
+      gsap.to('.hero-bg', {
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: 150,
+        ease: 'none'
+      });
+    }
 
     // Text reveal animation
     const splitText = document.querySelectorAll('.reveal-text');
