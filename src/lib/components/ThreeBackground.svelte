@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { browser } from '$app/environment';
+  import ThreeBackgroundFallback from './ThreeBackgroundFallback.svelte';
 
   let canvas;
   let scene, camera, renderer;
@@ -8,15 +9,41 @@
   let particles, particleGeometry, particleMaterial;
   let animationId;
   let mouseX = 0, mouseY = 0;
+  let threeFailed = false;
+  let showFallback = false;
 
   onMount(async () => {
     if (!browser) return;
     
-    const THREE = await import('three');
-    initThree(THREE);
-    animate();
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      showFallback = true;
+      return;
+    }
+
+    try {
+      // Check for WebGL support
+      if (!window.WebGLRenderingContext) {
+        throw new Error('WebGL not supported');
+      }
+
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        throw new Error('WebGL context not available');
+      }
+      
+      const THREE = await import('three');
+      initThree(THREE);
+      animate();
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('mousemove', handleMouseMove);
+    } catch (error) {
+      console.warn('3D background failed to initialize, using fallback:', error);
+      threeFailed = true;
+      showFallback = true;
+    }
   });
 
   onDestroy(() => {
@@ -130,7 +157,11 @@
   }
 </script>
 
-<canvas bind:this={canvas} class="three-canvas"></canvas>
+{#if showFallback}
+  <ThreeBackgroundFallback />
+{:else}
+  <canvas bind:this={canvas} class="three-canvas" aria-hidden="true"></canvas>
+{/if}
 
 <style>
   .three-canvas {

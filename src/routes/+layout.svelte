@@ -20,8 +20,9 @@
 </script>
 
 <div class="min-h-screen flex flex-col">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <Header />
-  <main class="flex-1">
+  <main id="main-content" class="flex-1" role="main">
     <slot />
   </main>
   <Footer />

@@ -64,7 +64,7 @@
 <ScrollAnimations />
 
 <!-- Hero Section -->
-<section class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900 overflow-hidden">
+<section class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900 overflow-hidden" role="banner" aria-label="Hero section with introduction">
   <!-- Background Elements -->
   <div class="absolute inset-0">
     <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
@@ -104,13 +104,13 @@
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start hero-buttons">
-            <a href="/projects" class="btn-primary inline-flex items-center justify-center space-x-2 group">
+            <a href="/projects" class="btn-primary inline-flex items-center justify-center space-x-2 group" aria-label="View my portfolio projects">
               <span>View My Work</span>
-              <ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </a>
-            <a href="/contact" class="btn-secondary inline-flex items-center justify-center space-x-2 group">
+            <a href="/contact" class="btn-secondary inline-flex items-center justify-center space-x-2 group" aria-label="Contact me for opportunities">
               <span>Get In Touch</span>
-              <ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </a>
           </div>
 
@@ -159,11 +159,11 @@
 </section>
 
 <!-- Skills Section -->
-<section class="py-20 bg-white dark:bg-gray-900">
+<section class="py-20 bg-white dark:bg-gray-900" role="region" aria-labelledby="skills-heading">
   <div class="container mx-auto px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
-        <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <h2 id="skills-heading" class="section-title text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           What I <span class="gradient-text">Specialize</span> In
         </h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto reveal-text">
