@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
-	import { theme, toggleTheme } from '../stores/theme.js';	import { Moon, Sun, Menu, X, Home, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
+	import { theme, toggleTheme } from '../stores/theme.js';
+	import { Moon, Sun, Menu, X, Home, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
 	
 	let mobileMenuOpen = false;
 	$: currentPath = $page.url.pathname;

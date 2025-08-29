@@ -1,5 +1,5 @@
 <script>
-	import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, MessageSquare } from 'lucide-svelte';
+	import { Mail, MapPin, Github, Linkedin, Twitter, Send, MessageSquare } from 'lucide-svelte';
 	import ThreeBackground from '$lib/components/ThreeBackground.svelte';
 	import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
 	import ScrollProgress from '$lib/components/ScrollProgress.svelte';
