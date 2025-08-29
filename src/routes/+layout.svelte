@@ -22,7 +22,7 @@
 <div class="min-h-screen flex flex-col">
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <Header />
-  <main id="main-content" class="flex-1" role="main">
+  <main id="main-content" class="flex-1">
     <slot />
   </main>
   <Footer />

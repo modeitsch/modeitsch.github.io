@@ -1,5 +1,5 @@
 <script>
-  import { ArrowRight, Code, Palette, Zap, Github, ExternalLink, Guitar, Coffee, MapPin } from 'lucide-svelte';
+  import { ArrowRight, Code, Palette, Zap, Github, ExternalLink, Guitar, MapPin } from 'lucide-svelte';
   import ThreeBackground from '$lib/components/ThreeBackground.svelte';
   import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
   import SkillCard3D from '$lib/components/SkillCard3D.svelte';
@@ -159,7 +159,7 @@
 </section>
 
 <!-- Skills Section -->
-<section class="py-20 bg-white dark:bg-gray-900" role="region" aria-labelledby="skills-heading">
+<section class="py-20 bg-white dark:bg-gray-900" aria-labelledby="skills-heading">
   <div class="container mx-auto px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
