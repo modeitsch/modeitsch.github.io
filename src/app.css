@@ -454,3 +454,37 @@ html.dark .glass {
 .skip-link:focus {
   top: 6px;
 }
+
+/* Performance: will-change hints for heavily animated elements */
+.animate-blob,
+.animate-bounce,
+.animate-pulse,
+.float,
+.float-delay-1,
+.float-delay-2 {
+  will-change: transform;
+}
+
+.gradient-text {
+  will-change: background-position;
+}
+
+.card-hover,
+.btn-primary,
+.btn-secondary {
+  will-change: transform, box-shadow;
+}
+
+/* Remove will-change after animation completes to free GPU memory */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-bounce,
+  .animate-pulse,
+  .float,
+  .gradient-text,
+  .card-hover,
+  .btn-primary,
+  .btn-secondary {
+    will-change: auto;
+  }
+}

@@ -2,8 +2,30 @@
 <html lang="en" class="%sveltekit.theme%">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Favicons -->
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" sizes="32x32" type="image/png" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+
+		<!-- PWA -->
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
+		<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1e3a8a" media="(prefers-color-scheme: dark)" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="Moshe Deitsch" />
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<!-- Preconnect to external resources -->
+		<link rel="preconnect" href="https://api.github.com" />
+		<link rel="preconnect" href="https://avatars.githubusercontent.com" />
+
+		<!-- DNS Prefetch -->
+		<link rel="dns-prefetch" href="https://api.github.com" />
+		<link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
