@@ -3,6 +3,7 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import KeyboardHints from '$lib/components/KeyboardHints.svelte';
+  import KonamiCode from '$lib/components/KonamiCode.svelte';
   import ScrollProgress from '$lib/components/ScrollProgress.svelte';
   import ThreeBackground from '$lib/components/ThreeBackground.svelte';
   import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
@@ -50,4 +51,5 @@
   </main>
   <Footer />
   <KeyboardHints />
+  <KonamiCode />
 </div>
