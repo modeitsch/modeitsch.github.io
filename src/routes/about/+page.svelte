@@ -1,69 +1,17 @@
 <script>
   import { Mail, Github, Twitter, Linkedin, Download } from 'lucide-svelte';
-  import ThreeBackground from '$lib/components/ThreeBackground.svelte';
-  import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
   import SkillCard3D from '$lib/components/SkillCard3D.svelte';
-  import ScrollProgress from '$lib/components/ScrollProgress.svelte';
-  
-  const experiences = [
-    {
-      title: "Senior Full Stack Developer",
-      company: "Tech Innovations Inc.",
-      period: "2023 - Present",
-      description: "Leading development of modern web applications using React, Node.js, and cloud technologies."
-    },
-    {
-      title: "Frontend Developer",
-      company: "Creative Solutions Ltd.",
-      period: "2021 - 2023",
-      description: "Built responsive user interfaces and improved user experience for various client projects."
-    },
-    {
-      title: "Junior Developer",
-      company: "StartUp Co.",
-      period: "2020 - 2021",
-      description: "Developed and maintained web applications while learning modern development practices."
-    }
-  ];
+  import { experiences, allTechnologies, aboutSkills } from '$lib/data';
 
-  const technologies = [
-    "JavaScript", "TypeScript", "React", "Svelte", "Vue.js",
-    "Node.js", "Python", "HTML5", "CSS3", "Tailwind CSS",
-    "MongoDB", "PostgreSQL", "Git", "Docker", "AWS"
-  ];
-
-  const skills = [
-    {
-      icon: () => '🎨',
-      title: "Frontend Development",
-      description: "Creating beautiful, responsive user interfaces with modern frameworks and libraries."
-    },
-    {
-      icon: () => '⚙️',
-      title: "Backend Development", 
-      description: "Building robust APIs and server-side applications with scalable architecture."
-    },
-    {
-      icon: () => '🚀',
-      title: "DevOps & Deployment",
-      description: "Implementing CI/CD pipelines and managing cloud infrastructure for optimal performance."
-    }
-  ];
+  // Use imported data
+  const technologies = allTechnologies;
+  const skills = aboutSkills;
 </script>
 
 <svelte:head>
   <title>About - Moshe Deitsch</title>
   <meta name="description" content="Learn more about me, my experience, and my passion for web development." />
 </svelte:head>
-
-<!-- Scroll Progress -->
-<ScrollProgress />
-
-<!-- 3D Background -->
-<ThreeBackground />
-
-<!-- Scroll Animations -->
-<ScrollAnimations />
 
 <!-- Hero Section -->
 <section class="hero-section bg-gradient-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 py-20">
