@@ -3,6 +3,8 @@
   import SkillCard3D from '$lib/components/SkillCard3D.svelte';
   import ProjectCard3D from '$lib/components/ProjectCard3D.svelte';
   import ScrollIndicator from '$lib/components/ScrollIndicator.svelte';
+  import GitHubStats from '$lib/components/GitHubStats.svelte';
+  import GitHubActivity from '$lib/components/GitHubActivity.svelte';
   import { homeSkills, featuredProjects, techStackPreview } from '$lib/data';
 
   // Use imported data
@@ -66,21 +68,8 @@
             </a>
           </div>
 
-          <!-- Quick Stats -->
-          <div class="flex items-center justify-center lg:justify-start space-x-8 mt-12 text-sm text-gray-500 dark:text-gray-400">
-            <div class="text-center stat-item">
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">24</div>
-              <div>Repositories</div>
-            </div>
-            <div class="text-center stat-item">
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">16</div>
-              <div>Followers</div>
-            </div>
-            <div class="text-center stat-item">
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">6+</div>
-              <div>Years Coding</div>
-            </div>
-          </div>
+          <!-- Quick Stats (Dynamic from GitHub API) -->
+          <GitHubStats />
         </div>
 
         <!-- Profile Image -->
@@ -165,6 +154,26 @@
           <span>View All Projects</span>
           <ArrowRight size={20} class="group-hover:translate-x-1 transition-transform" />
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GitHub Activity Section -->
+<section class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Latest <span class="gradient-text">Activity</span>
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto reveal-text">
+          See what I've been working on lately
+        </p>
+      </div>
+
+      <div class="card p-6 rounded-2xl">
+        <GitHubActivity />
       </div>
     </div>
   </div>
