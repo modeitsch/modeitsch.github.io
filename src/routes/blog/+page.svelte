@@ -1,5 +1,15 @@
 <script>
+  import BlogSearch from '$lib/components/BlogSearch.svelte';
+
   export let data;
+
+  let filteredPosts = data.posts;
+  let searchQuery = '';
+
+  function handleFilter(event) {
+    filteredPosts = event.detail.filteredPosts;
+    searchQuery = event.detail.searchQuery;
+  }
 </script>
 
 <svelte:head>
@@ -10,9 +20,13 @@
 <div class="container mx-auto px-4 py-8">
   <div class="max-w-4xl mx-auto">
     <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Blog</h1>
-    
+
+    <div class="mb-8">
+      <BlogSearch posts={data.posts} bind:searchQuery on:filter={handleFilter} />
+    </div>
+
     <div class="space-y-8">
-      {#each data.posts as post}
+      {#each filteredPosts as post}
         <article class="border-b border-gray-200 dark:border-gray-700 pb-8">
           <h2 class="text-2xl font-semibold mb-3">
             <a 
