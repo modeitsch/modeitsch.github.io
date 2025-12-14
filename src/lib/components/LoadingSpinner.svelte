@@ -47,7 +47,7 @@
     position: absolute;
     inset: 0;
     border: 2px solid transparent;
-    border-top: 2px solid rgb(37, 99, 235);
+    border-top: 2px solid var(--color-accent);
     border-radius: 50%;
     animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
@@ -66,13 +66,9 @@
 
   .loading-message {
     font-size: 0.875rem;
-    color: rgb(107, 114, 128);
+    color: var(--color-text-muted);
     text-align: center;
     margin: 0;
-  }
-
-  :global(html.dark) .loading-message {
-    color: rgb(156, 163, 175);
   }
 
   @keyframes spin {
@@ -88,7 +84,7 @@
   @media (prefers-reduced-motion: reduce) {
     .spinner-ring {
       animation: none !important;
-      border: 2px solid rgb(37, 99, 235);
+      border: 2px solid var(--color-accent);
       border-radius: 50%;
     }
   }

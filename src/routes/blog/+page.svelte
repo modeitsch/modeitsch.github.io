@@ -13,47 +13,147 @@
 </script>
 
 <svelte:head>
-  <title>Blog</title>
-  <meta name="description" content="Blog posts and articles" />
+  <title>Blog - Moshe Deitsch</title>
+  <meta name="description" content="Blog posts and articles about web development" />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Blog</h1>
-
-    <div class="mb-8">
-      <BlogSearch posts={data.posts} bind:searchQuery on:filter={handleFilter} />
-    </div>
-
-    <div class="space-y-8">
-      {#each filteredPosts as post}
-        <article class="border-b border-gray-200 dark:border-gray-700 pb-8">
-          <h2 class="text-2xl font-semibold mb-3">
-            <a 
-              href="/blog/{post.slug}" 
-              class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              {post.title}
-            </a>
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400 mb-4">
-            {new Date(post.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 line-clamp-2">
-            {post.preview}
-          </p>
-          <a 
-            href="/blog/{post.slug}" 
-            class="inline-block mt-4 text-blue-600 dark:text-blue-400 hover:underline"
-          >
-            Read more →
-          </a>
-        </article>
-      {/each}
+<section class="hero-section">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="page-title">
+        <span class="text-accent">Blog</span>
+      </h1>
+      <p class="hero-description">
+        Thoughts, tutorials, and insights about web development
+      </p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="section">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="search-container">
+        <BlogSearch posts={data.posts} bind:searchQuery on:filter={handleFilter} />
+      </div>
+
+      <div class="posts-list">
+        {#each filteredPosts as post}
+          <article class="post-card">
+            <h2 class="post-title">
+              <a href="/blog/{post.slug}">
+                {post.title}
+              </a>
+            </h2>
+            <p class="post-date">
+              {new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <p class="post-preview">
+              {post.preview}
+            </p>
+            <a href="/blog/{post.slug}" class="read-more">
+              Read more
+            </a>
+          </article>
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 6rem 0 3rem;
+    background: var(--color-background);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .section {
+    padding: 3rem 0 5rem;
+    background: var(--color-background);
+  }
+
+  .search-container {
+    margin-bottom: 3rem;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .post-card {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .post-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .post-title a:hover {
+    color: var(--color-accent);
+  }
+
+  .post-date {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .post-preview {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .read-more:hover {
+    color: var(--color-accent-hover);
+  }
+</style>

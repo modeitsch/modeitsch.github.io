@@ -71,7 +71,7 @@
 {#if !isMobile}
   <!-- Hint indicator (bottom right) -->
   <button
-    class="fixed bottom-4 right-4 z-40 p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-mono opacity-50 hover:opacity-100 transition-opacity duration-300 border border-gray-200 dark:border-gray-700"
+    class="hint-button"
     on:click={() => showHints = !showHints}
     aria-label="Toggle keyboard shortcuts"
   >
@@ -80,11 +80,8 @@
 
   <!-- Initial hint popup -->
   {#if visible && !showHints}
-    <div
-      class="fixed bottom-16 right-4 z-40 px-4 py-2 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm shadow-lg animate-fade-in"
-      role="tooltip"
-    >
-      Press <span class="kbd kbd-dark">?</span> for keyboard shortcuts
+    <div class="hint-popup" role="tooltip">
+      Press <span class="kbd">?</span> for keyboard shortcuts
     </div>
   {/if}
 
@@ -92,7 +89,7 @@
   {#if showHints}
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in"
+      class="modal-overlay"
       on:click={() => showHints = false}
       on:keydown={(e) => e.key === 'Escape' && (showHints = false)}
       role="dialog"
@@ -101,15 +98,15 @@
       tabindex="-1"
     >
       <div
-        class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 max-w-md mx-4 border border-gray-200 dark:border-gray-700"
+        class="modal-content"
         on:click|stopPropagation
         on:keydown|stopPropagation
         role="document"
       >
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Keyboard Shortcuts</h2>
+        <div class="modal-header">
+          <h2 class="modal-title">Keyboard Shortcuts</h2>
           <button
-            class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+            class="close-button"
             on:click={() => showHints = false}
             aria-label="Close"
           >
@@ -119,19 +116,18 @@
           </button>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Navigation</div>
+        <div class="shortcuts-list">
+          <div class="shortcuts-label">Navigation</div>
           {#each shortcuts as shortcut}
-            <div class="flex items-center justify-between py-1">
-              <span class="text-gray-600 dark:text-gray-300">{shortcut.description}</span>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">{shortcut.description}</span>
               <span class="kbd">{shortcut.key}</span>
             </div>
           {/each}
-          <div class="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
-            <div class="flex items-center justify-between py-1">
-              <span class="text-gray-600 dark:text-gray-300">Close this panel</span>
-              <span class="kbd">Esc</span>
-            </div>
+          <div class="shortcuts-divider"></div>
+          <div class="shortcut-item">
+            <span class="shortcut-desc">Close this panel</span>
+            <span class="kbd">Esc</span>
           </div>
         </div>
       </div>
@@ -140,39 +136,136 @@
 {/if}
 
 <style>
+  .hint-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 5rem;
+    z-index: 40;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 150ms ease, border-color 150ms ease;
+  }
+
+  .hint-button:hover {
+    opacity: 1;
+    border-color: var(--color-border-hover);
+  }
+
+  .hint-popup {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    z-index: 40;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    box-shadow: 0 4px 20px rgba(var(--color-shadow, 0, 0, 0), 0.15);
+    animation: fade-in 0.2s ease-out;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fade-in 0.2s ease-out;
+  }
+
+  .modal-content {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 24rem;
+    margin: 1rem;
+    box-shadow: 0 25px 50px rgba(var(--color-shadow, 0, 0, 0), 0.25);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-family: var(--font-heading);
+  }
+
+  .close-button {
+    padding: 0.25rem;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 150ms ease;
+  }
+
+  .close-button:hover {
+    color: var(--color-text-primary);
+  }
+
+  .shortcuts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .shortcuts-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .shortcut-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+  }
+
+  .shortcut-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .shortcuts-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 0.75rem 0;
+  }
+
   .kbd {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 1.5rem;
-    padding: 0.125rem 0.375rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    padding: 0.125rem 0.5rem;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 500;
-    background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
-    border: 1px solid #d1d5db;
+    background: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.25rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    color: #374151;
-  }
-
-  :global(html.dark) .kbd {
-    background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
-    border-color: #4b5563;
-    color: #e5e7eb;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .kbd-dark {
-    background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
-    border-color: #4b5563;
-    color: #e5e7eb;
-  }
-
-  :global(html.dark) .kbd-dark {
-    background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
-    border-color: #d1d5db;
-    color: #374151;
+    color: var(--color-text-secondary);
   }
 
   @keyframes fade-in {
@@ -184,9 +277,5 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.2s ease-out;
   }
 </style>

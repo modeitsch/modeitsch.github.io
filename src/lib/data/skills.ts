@@ -1,4 +1,4 @@
-import { Code, Palette, Zap } from 'lucide-svelte';
+import { Code, Palette, Zap, Layout, Server, Rocket } from 'lucide-svelte';
 import type { Skill } from '$lib/types';
 
 // Skills for home page
@@ -20,20 +20,20 @@ export const homeSkills: Skill[] = [
   }
 ];
 
-// Skills for about page (using emoji icons)
+// Skills for about page
 export const aboutSkills: Skill[] = [
   {
-    icon: () => '🎨',
+    icon: Layout,
     title: "Frontend Development",
     description: "Creating beautiful, responsive user interfaces with modern frameworks and libraries."
   },
   {
-    icon: () => '⚙️',
+    icon: Server,
     title: "Backend Development",
     description: "Building robust APIs and server-side applications with scalable architecture."
   },
   {
-    icon: () => '🚀',
+    icon: Rocket,
     title: "DevOps & Deployment",
     description: "Implementing CI/CD pipelines and managing cloud infrastructure for optimal performance."
   }

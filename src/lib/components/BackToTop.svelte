@@ -75,25 +75,25 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background: var(--color-accent);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 50;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(var(--color-shadow, 0, 0, 0), 0.2);
+    transition: transform 150ms ease, background-color 150ms ease;
     animation: slideUp 0.3s ease-out;
   }
 
   .back-to-top:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
   }
 
   .back-to-top:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
   }
 
   .progress-ring {
@@ -103,7 +103,7 @@
   }
 
   .progress-ring-bg {
-    stroke: rgba(255, 255, 255, 0.2);
+    stroke: rgba(255, 255, 255, 0.3);
   }
 
   .progress-ring-circle {
@@ -117,6 +117,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  /* Retro terminal theme - green on dark */
+  :global(.theme-retro-terminal) .back-to-top {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+  }
+
+  :global(.theme-retro-terminal) .progress-ring-bg {
+    stroke: rgba(51, 255, 51, 0.2);
+  }
+
+  :global(.theme-retro-terminal) .progress-ring-circle {
+    stroke: var(--color-accent);
+  }
+
+  :global(.theme-retro-terminal) .arrow-icon {
+    color: var(--color-accent);
   }
 
   @keyframes slideUp {

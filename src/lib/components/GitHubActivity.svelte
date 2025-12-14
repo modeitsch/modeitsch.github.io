@@ -69,16 +69,16 @@
 </script>
 
 <div class="github-activity">
-  <div class="flex items-center justify-between mb-6">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-      <Github size={20} class="text-gray-700 dark:text-gray-300" />
+  <div class="activity-header">
+    <h3 class="activity-title">
+      <Github size={20} />
       Recent Activity
     </h3>
     <a
       href="https://github.com/modeitsch"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+      class="profile-link"
     >
       View Profile
       <ExternalLink size={14} />
@@ -86,62 +86,250 @@
   </div>
 
   {#if $githubLoading && !$githubEvents.length}
-    <div class="space-y-3">
+    <div class="loading-list">
       {#each Array(5) as _}
-        <div class="animate-pulse flex items-start gap-3 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
-          <div class="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
-          <div class="flex-1 space-y-2">
-            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/4"></div>
+        <div class="loading-item">
+          <div class="loading-avatar"></div>
+          <div class="loading-content">
+            <div class="loading-line long"></div>
+            <div class="loading-line short"></div>
           </div>
         </div>
       {/each}
     </div>
   {:else if $githubError}
-    <div class="text-center py-8 text-gray-500 dark:text-gray-400">
-      <Github size={40} class="mx-auto mb-3 opacity-50" />
+    <div class="error-state">
+      <Github size={40} />
       <p>Unable to load activity</p>
-      <button
-        on:click={() => github.fetchEvents()}
-        class="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
-      >
+      <button on:click={() => github.fetchEvents()} class="retry-button">
         Try again
       </button>
     </div>
   {:else if $githubEvents.length > 0}
-    <div class="space-y-2">
+    <div class="activity-list">
       {#each $githubEvents.slice(0, 6) as event (event.id)}
         <a
           href={getRepoUrl(event)}
           target="_blank"
           rel="noopener noreferrer"
-          class="activity-item flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+          class="activity-item"
         >
-          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+          <div class="event-icon">
             <svelte:component this={getEventIcon(event.type)} size={16} />
           </div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm text-gray-700 dark:text-gray-300 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <div class="event-content">
+            <p class="event-description">
               {getEventDescription(event)}
             </p>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            <p class="event-time">
               {formatTime(event.created_at)}
             </p>
           </div>
-          <ExternalLink size={14} class="flex-shrink-0 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <ExternalLink size={14} class="external-icon" />
         </a>
       {/each}
     </div>
   {:else}
-    <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+    <div class="empty-state">
       <p>No recent activity</p>
     </div>
   {/if}
 </div>
 
 <style>
+  .github-activity {
+    width: 100%;
+  }
+
+  .activity-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .activity-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .profile-link {
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .profile-link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: var(--color-background-secondary);
+    text-decoration: none;
+    transition: all 150ms ease;
+  }
+
   .activity-item:hover {
+    background: var(--color-surface);
     transform: translateX(4px);
-    transition: transform 0.2s ease;
+  }
+
+  .event-icon {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-accent);
+  }
+
+  .event-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .event-description {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    transition: color 150ms ease;
+  }
+
+  .activity-item:hover .event-description {
+    color: var(--color-accent);
+  }
+
+  .event-time {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0.25rem 0 0;
+  }
+
+  .activity-item :global(.external-icon) {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .activity-item:hover :global(.external-icon) {
+    opacity: 1;
+  }
+
+  .loading-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .loading-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--color-background-secondary);
+    border-radius: 0.5rem;
+  }
+
+  .loading-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-surface);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .loading-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .loading-line {
+    height: 0.875rem;
+    background: var(--color-surface);
+    border-radius: 0.25rem;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .loading-line.long {
+    width: 75%;
+  }
+
+  .loading-line.short {
+    width: 25%;
+    height: 0.75rem;
+  }
+
+  .error-state,
+  .empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .error-state :global(svg) {
+    margin: 0 auto 0.75rem;
+    opacity: 0.5;
+  }
+
+  .retry-button {
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .retry-button:hover {
+    text-decoration: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loading-avatar,
+    .loading-line {
+      animation: none;
+    }
+    .activity-item:hover {
+      transform: none;
+    }
   }
 </style>
