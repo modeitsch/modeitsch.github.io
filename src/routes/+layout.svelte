@@ -9,6 +9,8 @@
   import ScrollProgress from '$lib/components/ScrollProgress.svelte';
   import ThreeBackground from '$lib/components/ThreeBackground.svelte';
   import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
+  import PageTransition from '$lib/components/PageTransition.svelte';
+  import BackToTop from '$lib/components/BackToTop.svelte';
   import { onMount } from 'svelte';
   import { theme } from '$lib/stores/theme.js';
   import { initAudio } from '$lib/stores/sound.js';
@@ -52,10 +54,13 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <Header />
   <main id="main-content" class="flex-1">
-    <slot />
+    <PageTransition>
+      <slot />
+    </PageTransition>
   </main>
   <Footer />
   <KeyboardHints />
   <KonamiCode />
   <CustomCursor />
+  <BackToTop />
 </div>

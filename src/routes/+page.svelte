@@ -5,6 +5,7 @@
   import ScrollIndicator from '$lib/components/ScrollIndicator.svelte';
   import GitHubStats from '$lib/components/GitHubStats.svelte';
   import GitHubActivity from '$lib/components/GitHubActivity.svelte';
+  import LazyImage from '$lib/components/LazyImage.svelte';
   import { homeSkills, featuredProjects, techStackPreview } from '$lib/data';
 
   // Use imported data
@@ -76,10 +77,10 @@
         <div class="flex-shrink-0">
           <div class="relative profile-image profile-glow">
             <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl image-hover">
-              <img
+              <LazyImage
                 src="https://avatars.githubusercontent.com/u/41856538?v=4"
                 alt="Moshe Deitsch"
-                class="w-full h-full object-cover"
+                className="w-full h-full"
               />
             </div>
             <!-- Decorative rings -->
