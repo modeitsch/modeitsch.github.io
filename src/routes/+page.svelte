@@ -1,68 +1,19 @@
 <script>
-  import { ArrowRight, Code, Palette, Zap, Github, ExternalLink, Guitar, MapPin } from 'lucide-svelte';
-  import ThreeBackground from '$lib/components/ThreeBackground.svelte';
-  import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
+  import { ArrowRight, Github, ExternalLink, Guitar, MapPin } from 'lucide-svelte';
   import SkillCard3D from '$lib/components/SkillCard3D.svelte';
   import ProjectCard3D from '$lib/components/ProjectCard3D.svelte';
-  import ScrollProgress from '$lib/components/ScrollProgress.svelte';
   import ScrollIndicator from '$lib/components/ScrollIndicator.svelte';
-  
-  const skills = [
-    {
-      icon: Code,
-      title: "Full Stack Development",
-      description: "Building modern web applications with cutting-edge technologies and best practices."
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Creating beautiful, intuitive user interfaces that provide exceptional user experiences."
-    },
-    {
-      icon: Zap,
-      title: "Performance Optimization",
-      description: "Optimizing applications for speed, scalability, and exceptional performance."
-    }
-  ];
+  import { homeSkills, featuredProjects, techStackPreview } from '$lib/data';
 
-  const projects = [
-    {
-      title: "Modern Portfolio Website",
-      description: "A responsive portfolio built with SvelteKit, Tailwind CSS, and modern web technologies.",
-      tech: ["SvelteKit", "TypeScript", "Tailwind CSS"],
-      github: "https://github.com/modeitsch",
-      demo: "https://modeitsch.com"
-    },
-    {
-      title: "Open Source Contributions",
-      description: "Various contributions to open source projects and personal coding experiments.",
-      tech: ["JavaScript", "Python", "Git"],
-      github: "https://github.com/modeitsch",
-      demo: "https://github.com/modeitsch"
-    },
-    {
-      title: "Web Development Projects",
-      description: "Collection of web applications and tools built with modern frameworks and libraries.",
-      tech: ["React", "Vue.js", "Node.js"],
-      github: "https://github.com/modeitsch",
-      demo: "https://modeitsch.com"
-    }
-  ];
+  // Use imported data
+  const skills = homeSkills;
+  const projects = featuredProjects;
 </script>
 
 <svelte:head>
   <title>Moshe Deitsch - Developer & Guitarist</title>
   <meta name="description" content="Moshe Deitsch - Coding for breakfast, coding for lunch... playing guitar for brunch. Full-stack developer passionate about modern web technologies." />
 </svelte:head>
-
-<!-- Scroll Progress -->
-<ScrollProgress />
-
-<!-- 3D Background -->
-<ThreeBackground />
-
-<!-- Scroll Animations -->
-<ScrollAnimations />
 
 <!-- Hero Section -->
 <section class="hero-section relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900 overflow-hidden" role="banner" aria-label="Hero section with introduction">
@@ -178,7 +129,7 @@
       <div class="mt-16 text-center">
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Technologies I work with</p>
         <div class="flex flex-wrap justify-center gap-4">
-          {#each ['JavaScript', 'TypeScript', 'Svelte', 'React', 'Vue.js', 'Node.js', 'Python', 'Tailwind CSS'] as tech}
+          {#each techStackPreview as tech}
             <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-colors">
               {tech}
             </span>

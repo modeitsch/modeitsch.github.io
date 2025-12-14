@@ -1,69 +1,12 @@
 <script>
 	import { Mail, MapPin, Github, Linkedin, Twitter, Send, MessageSquare } from 'lucide-svelte';
-	import ThreeBackground from '$lib/components/ThreeBackground.svelte';
-	import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
-	import ScrollProgress from '$lib/components/ScrollProgress.svelte';
-
-	const contactMethods = [
-		{
-			href: "mailto:moshedeitsch@outlook.com",
-			icon: Mail,
-			title: "Email",
-			description: "moshedeitsch [at] outlook [dot] com",
-			gradient: "from-blue-500 to-blue-600"
-		},
-		{
-			href: "https://linkedin.com/in/moshe-deitsch",
-			icon: Linkedin,
-			title: "LinkedIn",
-			description: "Connect professionally",
-			gradient: "from-blue-600 to-blue-700"
-		},
-		{
-			href: "https://github.com/modeitsch",
-			icon: Github,
-			title: "GitHub",
-			description: "Check out my code",
-			gradient: "from-gray-700 to-gray-900"
-		},
-		{
-			href: "https://twitter.com/modeitsch",
-			icon: Twitter,
-			title: "Twitter",
-			description: "Follow my journey",
-			gradient: "from-sky-400 to-sky-500"
-		}
-	];
-
-	const faqs = [
-		{
-			question: "What kind of projects do you work on?",
-			answer: "I specialize in modern web development, including frontend applications, full-stack solutions, and API development. I work with technologies like SvelteKit, React, Node.js, and more."
-		},
-		{
-			question: "How do you prefer to communicate?",
-			answer: "Email is usually the best way to reach me initially. For ongoing projects, I'm flexible with communication methods including video calls, Slack, or other platforms you prefer."
-		},
-		{
-			question: "Are you available for freelance work?",
-			answer: "Yes! I'm always interested in exciting projects. Feel free to reach out with details about your project, timeline, and requirements."
-		}
-	];
+	import { contactMethods, faqs } from '$lib/data';
 </script>
 
 <svelte:head>
 	<title>Contact - Moshe Deitsch</title>
 	<meta name="description" content="Get in touch with me for collaborations, opportunities, or just to say hello" />
 </svelte:head>
-
-<!-- Scroll Progress -->
-<ScrollProgress />
-
-<!-- 3D Background -->
-<ThreeBackground />
-
-<!-- Scroll Animations -->
-<ScrollAnimations />
 
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900">
 	<!-- Hero Section -->

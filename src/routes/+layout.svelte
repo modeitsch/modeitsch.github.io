@@ -3,6 +3,9 @@
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import KeyboardHints from '$lib/components/KeyboardHints.svelte';
+  import ScrollProgress from '$lib/components/ScrollProgress.svelte';
+  import ThreeBackground from '$lib/components/ThreeBackground.svelte';
+  import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
   import { onMount } from 'svelte';
   import { theme } from '$lib/stores/theme.js';
   import { initAudio } from '$lib/stores/sound.js';
@@ -33,6 +36,11 @@
     };
   });
 </script>
+
+<!-- Global components -->
+<ScrollProgress />
+<ThreeBackground />
+<ScrollAnimations />
 
 <div class="min-h-screen flex flex-col">
   <a href="#main-content" class="skip-link">Skip to main content</a>
