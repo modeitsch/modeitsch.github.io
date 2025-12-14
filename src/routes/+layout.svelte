@@ -5,6 +5,7 @@
   import KeyboardHints from '$lib/components/KeyboardHints.svelte';
   import KonamiCode from '$lib/components/KonamiCode.svelte';
   import CustomCursor from '$lib/components/CustomCursor.svelte';
+  import SEO from '$lib/components/SEO.svelte';
   import ScrollProgress from '$lib/components/ScrollProgress.svelte';
   import ThreeBackground from '$lib/components/ThreeBackground.svelte';
   import ScrollAnimations from '$lib/components/ScrollAnimations.svelte';
@@ -38,6 +39,9 @@
     };
   });
 </script>
+
+<!-- SEO -->
+<SEO />
 
 <!-- Global components -->
 <ScrollProgress />
