@@ -74,10 +74,10 @@
 
         <!-- Profile Image -->
         <div class="flex-shrink-0">
-          <div class="relative profile-image">
-            <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-              <img 
-                src="https://avatars.githubusercontent.com/u/41856538?v=4" 
+          <div class="relative profile-image profile-glow">
+            <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl image-hover">
+              <img
+                src="https://avatars.githubusercontent.com/u/41856538?v=4"
                 alt="Moshe Deitsch"
                 class="w-full h-full object-cover"
               />
