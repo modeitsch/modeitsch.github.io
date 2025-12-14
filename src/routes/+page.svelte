@@ -5,6 +5,7 @@
   import SkillCard3D from '$lib/components/SkillCard3D.svelte';
   import ProjectCard3D from '$lib/components/ProjectCard3D.svelte';
   import ScrollProgress from '$lib/components/ScrollProgress.svelte';
+  import ScrollIndicator from '$lib/components/ScrollIndicator.svelte';
   
   const skills = [
     {
@@ -151,11 +152,7 @@
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <div class="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
-      <div class="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"></div>
-    </div>
-  </div>
+  <ScrollIndicator />
 </section>
 
 <!-- Skills Section -->

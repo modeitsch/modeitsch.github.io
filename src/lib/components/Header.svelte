@@ -1,13 +1,20 @@
 <script>
 	import { page } from '$app/stores';
 	import { theme, toggleTheme } from '../stores/theme.js';
+	import { playHoverSound, playClickSound } from '../stores/sound.js';
 	import { Moon, Sun, Menu, X, Home, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
-	
+
 	let mobileMenuOpen = false;
 	$: currentPath = $page.url.pathname;
-	
+
 	function toggleMobileMenu() {
+		playClickSound();
 		mobileMenuOpen = !mobileMenuOpen;
+	}
+
+	function handleThemeToggle() {
+		playClickSound();
+		toggleTheme();
 	}
 </script>
 
@@ -24,27 +31,27 @@
 			<!-- Desktop Navigation -->
 			<div class="hidden md:block">
 				<div class="ml-10 flex items-center space-x-12">
-					<a href="/" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+					<a href="/" on:mouseenter={playHoverSound} class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<Home size={16} />
 						<span>Home</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath === '/' ? 'w-full' : ''}"></span>
 					</a>
-					<a href="/about" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/about' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+					<a href="/about" on:mouseenter={playHoverSound} class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/about' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<User size={16} />
 						<span>About</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath === '/about' ? 'w-full' : ''}"></span>
 					</a>
-					<a href="/projects" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/projects' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+					<a href="/projects" on:mouseenter={playHoverSound} class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/projects' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<Briefcase size={16} />
 						<span>Projects</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath === '/projects' ? 'w-full' : ''}"></span>
 					</a>
-					<a href="/blog" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath.startsWith('/blog') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+					<a href="/blog" on:mouseenter={playHoverSound} class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath.startsWith('/blog') ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<BookOpen size={16} />
 						<span>Blog</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath.startsWith('/blog') ? 'w-full' : ''}"></span>
 					</a>
-					<a href="/contact" class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/contact' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
+					<a href="/contact" on:mouseenter={playHoverSound} class="relative group flex items-center space-x-2 text-sm font-medium transition-all duration-300 {currentPath === '/contact' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}">
 						<Mail size={16} />
 						<span>Contact</span>
 						<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 {currentPath === '/contact' ? 'w-full' : ''}"></span>
@@ -55,7 +62,8 @@
 			<!-- Theme toggle and mobile menu button -->
 			<div class="flex items-center space-x-4">
 				<button
-					on:click={toggleTheme}
+					on:click={handleThemeToggle}
+				on:mouseenter={playHoverSound}
 					class="p-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 group"
 					aria-label="Toggle theme"
 				>
@@ -70,6 +78,7 @@
 				<div class="md:hidden">
 					<button
 						on:click={toggleMobileMenu}
+						on:mouseenter={playHoverSound}
 						class="p-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
 						aria-label="Toggle mobile menu"
 					>
