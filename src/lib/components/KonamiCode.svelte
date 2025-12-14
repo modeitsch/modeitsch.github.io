@@ -53,7 +53,8 @@
   }
 
   function createConfetti() {
-    const colors = ['#2563eb', '#7c3aed', '#ec4899', '#10b981', '#f59e0b', '#ef4444'];
+    // Use theme-aware colors
+    const colors = ['var(--color-accent)', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
     confetti = Array.from({ length: 100 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -73,7 +74,7 @@
 
 {#if showEasterEgg}
   <!-- Confetti -->
-  <div class="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+  <div class="confetti-container">
     {#each confetti as particle (particle.id)}
       <div
         class="confetti"
@@ -92,7 +93,7 @@
 
   <!-- Easter Egg Modal -->
   <div
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm animate-fade-in"
+    class="modal-overlay"
     on:click={closeEasterEgg}
     on:keydown={(e) => e.key === 'Escape' && closeEasterEgg()}
     role="dialog"
@@ -100,38 +101,29 @@
     tabindex="-1"
   >
     <div
-      class="easter-egg-card bg-gradient-to-br from-purple-600 via-blue-600 to-pink-600 p-1 rounded-3xl shadow-2xl max-w-md mx-4 animate-bounce-in"
+      class="easter-egg-card"
       on:click|stopPropagation
       on:keydown|stopPropagation
       role="document"
     >
-      <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 text-center">
-        <div class="text-6xl mb-4 animate-wiggle">
+      <div class="card-inner">
+        <div class="emoji animate-wiggle">
           🎮
         </div>
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          Achievement Unlocked!
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">
-          You found the secret Konami code!
-        </p>
-        <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-4 mb-6">
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">The code:</p>
-          <div class="flex flex-wrap justify-center gap-1">
+        <h2 class="title">Achievement Unlocked!</h2>
+        <p class="subtitle">You found the secret Konami code!</p>
+        <div class="code-display">
+          <p class="code-label">The code:</p>
+          <div class="code-keys">
             {#each ['↑', '↑', '↓', '↓', '←', '→', '←', '→', 'B', 'A'] as key}
-              <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm font-mono text-gray-700 dark:text-gray-300">
-                {key}
-              </span>
+              <span class="kbd">{key}</span>
             {/each}
           </div>
         </div>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          Fun fact: I really do code while eating breakfast! ☕️💻
+        <p class="fun-fact">
+          Fun fact: I really do code while eating breakfast!
         </p>
-        <button
-          class="btn-primary"
-          on:click={closeEasterEgg}
-        >
+        <button class="btn-primary" on:click={closeEasterEgg}>
           Awesome!
         </button>
       </div>
@@ -140,11 +132,101 @@
 {/if}
 
 <style>
+  .confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    overflow: hidden;
+  }
+
   .confetti {
     position: absolute;
     top: -20px;
     border-radius: 2px;
     animation: fall linear forwards;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .easter-egg-card {
+    background: var(--color-accent);
+    padding: 3px;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px rgba(var(--color-shadow, 0, 0, 0), 0.25);
+    max-width: 24rem;
+    margin: 1rem;
+    animation: bounce-in 0.6s ease-out;
+  }
+
+  .card-inner {
+    background: var(--color-surface);
+    border-radius: 1.375rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .emoji {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .code-display {
+    background: var(--color-background-secondary);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .code-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .code-keys {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .kbd {
+    padding: 0.25rem 0.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+  }
+
+  .fun-fact {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
   }
 
   @keyframes fall {
@@ -159,16 +241,8 @@
   }
 
   @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @keyframes bounce-in {
@@ -186,10 +260,6 @@
       opacity: 1;
       transform: scale(1);
     }
-  }
-
-  .animate-bounce-in {
-    animation: bounce-in 0.6s ease-out;
   }
 
   @keyframes wiggle {

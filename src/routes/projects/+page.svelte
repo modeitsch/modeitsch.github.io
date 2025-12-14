@@ -1,73 +1,164 @@
 <script>
-	import { ExternalLink, Github, Calendar, Tag } from 'lucide-svelte';
-	import ProjectCard3D from '$lib/components/ProjectCard3D.svelte';
-	import { allProjects } from '$lib/data';
+  import { ExternalLink, Tag } from 'lucide-svelte';
+  import ProjectCard from '$lib/components/ProjectCard.svelte';
+  import { allProjects } from '$lib/data';
 
-	// Use imported data
-	const projects = allProjects;
+  const projects = allProjects;
 </script>
 
 <svelte:head>
-	<title>Projects - Moshe Deitsch</title>
-	<meta name="description" content="A showcase of my development projects and contributions" />
+  <title>Projects - Moshe Deitsch</title>
+  <meta name="description" content="A showcase of my development projects and contributions" />
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900">
-	<!-- Hero Section -->
-	<section class="hero-section relative py-20 lg:py-32">
-		<div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 dark:from-blue-400/5 dark:to-purple-400/5"></div>
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-			<div class="text-center max-w-4xl mx-auto">
-				<h1 class="section-title text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-					<span class="hero-title">My</span> <span class="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Projects</span>
-				</h1>
-				<p class="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed reveal-text">
-					A collection of web applications, tools, and experiments I've built with passion and precision.
-				</p>
-				<div class="hero-buttons flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-					<span class="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full">
-						<Tag size={16} />
-						<span>Web Development</span>
-					</span>
-					<span class="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full">
-						<Tag size={16} />
-						<span>Open Source</span>
-					</span>
-					<span class="flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full">
-						<Tag size={16} />
-						<span>Full Stack</span>
-					</span>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="page-title">
+        My <span class="text-accent">Projects</span>
+      </h1>
+      <p class="hero-description">
+        A collection of web applications, tools, and experiments I've built with passion and precision.
+      </p>
+      <div class="tag-list">
+        <span class="hero-tag">
+          <Tag size={16} />
+          <span>Web Development</span>
+        </span>
+        <span class="hero-tag">
+          <Tag size={16} />
+          <span>Open Source</span>
+        </span>
+        <span class="hero-tag">
+          <Tag size={16} />
+          <span>Full Stack</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
-	<!-- Projects Grid -->
-	<section class="py-20">
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{#each projects as project, index}
-					<ProjectCard3D {project} {index} />
-				{/each}
-			</div>
-		</div>
-	</section>
+<!-- Projects Grid -->
+<section class="section">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {#each projects as project}
+        <ProjectCard {project} />
+      {/each}
+    </div>
+  </div>
+</section>
 
-	<!-- Call to Action -->
-	<section class="py-20">
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="animate-card bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-center text-white card-hover glass">
-				<h2 class="text-3xl md:text-4xl font-bold mb-4">
-					Let's Build Something Amazing Together
-				</h2>
-				<p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-					Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.
-				</p>
-				<a href="/contact" class="inline-flex items-center space-x-2 px-8 py-4 bg-white text-blue-600 rounded-xl hover:bg-gray-100 transition-all duration-300 font-medium group">
-					<span>Get In Touch</span>
-					<ExternalLink size={16} class="group-hover:translate-x-0.5 transition-transform" />
-				</a>
-			</div>
-		</div>
-	</section>
-</div>
+<!-- Call to Action -->
+<section class="section section-alt">
+  <div class="container mx-auto px-4">
+    <div class="cta-card">
+      <h2 class="cta-title">Let's Build Something Amazing Together</h2>
+      <p class="cta-description">
+        Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.
+      </p>
+      <a href="/contact" class="cta-button">
+        <span>Get In Touch</span>
+        <ExternalLink size={16} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 6rem 0 4rem;
+    background: var(--color-background);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .section {
+    padding: 5rem 0;
+    background: var(--color-background);
+  }
+
+  .section-alt {
+    background: var(--color-background-secondary);
+  }
+
+  .cta-card {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: var(--color-accent);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: white;
+    color: var(--color-accent);
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 150ms ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+</style>

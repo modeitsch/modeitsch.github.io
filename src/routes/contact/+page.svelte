@@ -1,112 +1,294 @@
 <script>
-	import { Mail, MapPin, Github, Linkedin, Twitter, Send, MessageSquare } from 'lucide-svelte';
-	import { contactMethods, faqs } from '$lib/data';
+  import { Mail, MapPin, MessageSquare, Send } from 'lucide-svelte';
+  import { contactMethods, faqs } from '$lib/data';
 </script>
 
 <svelte:head>
-	<title>Contact - Moshe Deitsch</title>
-	<meta name="description" content="Get in touch with me for collaborations, opportunities, or just to say hello" />
+  <title>Contact - Moshe Deitsch</title>
+  <meta name="description" content="Get in touch with me for collaborations, opportunities, or just to say hello" />
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900">
-	<!-- Hero Section -->
-	<section class="hero-section relative py-20 lg:py-32">
-		<div class="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-blue-600/5 dark:from-purple-400/5 dark:to-blue-400/5"></div>
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-			<div class="text-center max-w-4xl mx-auto">
-				<h1 class="section-title text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-					<span class="hero-title">Let's</span> <span class="hero-title bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Connect</span>
-				</h1>
-				<p class="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed reveal-text">
-					I'm always open to discussing new opportunities, collaborations, or just having a friendly chat about technology and development.
-				</p>
-				<div class="hero-buttons flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-					<span class="stat-item flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
-						<MessageSquare size={16} />
-						<span>Quick Response</span>
-					</span>
-					<span class="stat-item flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
-						<Mail size={16} />
-						<span>Professional</span>
-					</span>
-					<span class="stat-item flex items-center space-x-2 bg-white/50 dark:bg-gray-800/50 px-4 py-2 rounded-full backdrop-blur-sm">
-						<Send size={16} />
-						<span>Open to Opportunities</span>
-					</span>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="page-title">
+        Let's <span class="text-accent">Connect</span>
+      </h1>
+      <p class="hero-description">
+        I'm always open to discussing new opportunities, collaborations, or just having a friendly chat about technology and development.
+      </p>
+      <div class="tag-list">
+        <span class="hero-tag">
+          <MessageSquare size={16} />
+          <span>Quick Response</span>
+        </span>
+        <span class="hero-tag">
+          <Mail size={16} />
+          <span>Professional</span>
+        </span>
+        <span class="hero-tag">
+          <Send size={16} />
+          <span>Open to Opportunities</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
-	<!-- Contact Content -->
-	<section class="py-20">
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="max-w-4xl mx-auto">
-				
-				<!-- Contact Information -->
-				<div class="space-y-8">
-					<div class="text-center">
-						<h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-							Get In Touch
-						</h2>
-						<p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12 reveal-text">
-							Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. Choose your preferred way to connect below.
-						</p>
-					</div>
+<!-- Contact Content -->
+<section class="section">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
 
-					<!-- Contact Methods -->
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-						{#each contactMethods as method, index}
-							<a 
-								href={method.href} 
-								class="animate-card flex items-center space-x-4 p-6 rounded-xl bg-white/80 dark:bg-gray-800/80 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm card-hover interactive-glow"
-								style="animation-delay: {index * 150}ms;"
-							>
-								<div class="w-16 h-16 bg-gradient-to-r {method.gradient} rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-									<svelte:component this={method.icon} size={24} />
-								</div>
-								<div>
-									<h3 class="font-semibold text-gray-900 dark:text-white text-lg">{method.title}</h3>
-									<p class="text-gray-600 dark:text-gray-300">{method.description}</p>
-								</div>
-							</a>
-						{/each}
-					</div>
+      <!-- Contact Information -->
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+          Whether you have a project in mind, want to collaborate, or just want to say hello,
+          I'd love to hear from you. Choose your preferred way to connect below.
+        </p>
+      </div>
 
-					<!-- Location Card -->
-					<div class="mt-8">
-						<div class="animate-card flex items-center justify-center space-x-4 p-6 rounded-xl bg-white/80 dark:bg-gray-800/80 shadow-lg border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm max-w-md mx-auto" style="animation-delay: 600ms;">
-							<div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white">
-								<MapPin size={24} />
-							</div>
-							<div class="text-center">
-								<h3 class="font-semibold text-gray-900 dark:text-white text-lg">Location</h3>
-								<p class="text-gray-600 dark:text-gray-300">Israel (UTC+3)</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+      <!-- Contact Methods -->
+      <div class="contact-grid">
+        {#each contactMethods as method}
+          <a href={method.href} class="contact-card">
+            <div class="contact-icon" style="background: {method.gradient}">
+              <svelte:component this={method.icon} size={24} />
+            </div>
+            <div>
+              <h3 class="contact-title">{method.title}</h3>
+              <p class="contact-desc">{method.description}</p>
+            </div>
+          </a>
+        {/each}
+      </div>
 
-	<!-- FAQ Section -->
-	<section class="py-20 bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/10 dark:to-purple-900/10 backdrop-blur-sm">
-		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center max-w-3xl mx-auto">
-				<h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">
-					Frequently Asked <span class="gradient-text">Questions</span>
-				</h2>
-				
-				<div class="space-y-6 text-left">
-					{#each faqs as faq, index}
-						<div class="animate-card bg-white/80 dark:bg-gray-800/80 rounded-xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm card-hover" style="animation-delay: {index * 150}ms;">
-							<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{faq.question}</h3>
-							<p class="text-gray-600 dark:text-gray-300">{faq.answer}</p>
-						</div>
-					{/each}
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
+      <!-- Location Card -->
+      <div class="location-card">
+        <div class="location-icon">
+          <MapPin size={24} />
+        </div>
+        <div class="text-center">
+          <h3 class="location-title">Location</h3>
+          <p class="location-desc">Israel (UTC+3)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section section-alt">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto">
+      <div class="section-header">
+        <h2 class="section-title">
+          Frequently Asked <span class="text-accent">Questions</span>
+        </h2>
+      </div>
+
+      <div class="faq-list">
+        {#each faqs as faq}
+          <article class="faq-card">
+            <h3 class="faq-question">{faq.question}</h3>
+            <p class="faq-answer">{faq.answer}</p>
+          </article>
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 6rem 0 4rem;
+    background: var(--color-background);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .section {
+    padding: 5rem 0;
+    background: var(--color-background);
+  }
+
+  .section-alt {
+    background: var(--color-background-secondary);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    transition: all 150ms ease;
+  }
+
+  .contact-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: 0 8px 30px rgba(var(--color-shadow, 0, 0, 0), 0.08);
+  }
+
+  .contact-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    background: var(--color-accent);
+  }
+
+  .contact-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+  }
+
+  .contact-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .location-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+
+  .location-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #10b981;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .location-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+  }
+
+  .location-desc {
+    color: var(--color-text-secondary);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 150ms ease;
+  }
+
+  .faq-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: 0 8px 30px rgba(var(--color-shadow, 0, 0, 0), 0.08);
+  }
+
+  .faq-question {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-answer {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

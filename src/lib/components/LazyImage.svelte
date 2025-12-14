@@ -67,20 +67,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    background: var(--color-background-secondary);
     gap: 0.5rem;
-  }
-
-  :global(html.dark) .loading-placeholder,
-  :global(html.dark) .error-placeholder {
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   }
 
   .loading-spinner {
     width: 32px;
     height: 32px;
-    border: 3px solid rgba(37, 99, 235, 0.2);
-    border-top-color: #2563eb;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-accent);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -92,12 +87,8 @@
   }
 
   .error-placeholder {
-    color: #6b7280;
+    color: var(--color-text-muted);
     font-size: 0.875rem;
-  }
-
-  :global(html.dark) .error-placeholder {
-    color: #9ca3af;
   }
 
   .error-placeholder svg {
