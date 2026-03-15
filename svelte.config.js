@@ -12,12 +12,8 @@ const config = {
             precompress: false,
             strict: true
         }),
-        paths: {
-            base: process.env.NODE_ENV === 'production' ? '/sveltekit-blog' : ''
-        },
         prerender: {
             handleHttpError: ({ path, referrer, message }) => {
-                // Ignore 404s for missing paths during prerendering
                 if (message.includes('404')) {
                     return;
                 }

@@ -2,9 +2,9 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
 
-  let visible = true;
-  let attention = true;
-  let hasScrolled = false;
+  let visible = $state(true);
+  let attention = $state(true);
+  let hasScrolled = $state(false);
 
   onMount(() => {
     if (!browser) return;

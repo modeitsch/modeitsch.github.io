@@ -2,8 +2,10 @@
   import { theme, THEMES, setTheme, currentTheme } from '$lib/stores/theme.js';
   import { Sun, SunMoon, Terminal, Moon, Check } from 'lucide-svelte';
 
-  let isOpen = false;
+  let isOpen = $state(false);
   let pickerRef;
+
+  let CurrentThemeIcon = $derived(themeIcons[$theme]);
 
   const themeIcons = {
     'clean-modern': Sun,
@@ -30,17 +32,17 @@
   }
 </script>
 
-<svelte:window on:click={handleClickOutside} on:keydown={handleKeydown} />
+<svelte:window onclick={handleClickOutside} onkeydown={handleKeydown} />
 
 <div bind:this={pickerRef} class="theme-picker">
   <button
-    on:click={() => isOpen = !isOpen}
+    onclick={() => isOpen = !isOpen}
     class="theme-trigger"
     aria-label="Choose theme"
     aria-expanded={isOpen}
     aria-haspopup="listbox"
   >
-    <svelte:component this={themeIcons[$theme]} size={20} />
+    <CurrentThemeIcon size={20} />
   </button>
 
   {#if isOpen}
@@ -50,10 +52,11 @@
       aria-label="Available themes"
     >
       {#each Object.entries(THEMES) as [key, config]}
+        {@const OptionIcon = themeIcons[key]}
         <button
           role="option"
           aria-selected={$theme === key}
-          on:click={() => selectTheme(key)}
+          onclick={() => selectTheme(key)}
           class="theme-option"
           class:active={$theme === key}
         >
@@ -61,7 +64,7 @@
             class="theme-preview"
             style="--preview-bg: {config.colors.background}; --preview-accent: {config.colors.accent}; --preview-text: {config.colors.textPrimary}"
           >
-            <svelte:component this={themeIcons[key]} size={16} style="color: {config.colors.textPrimary}" />
+            <OptionIcon size={16} style="color: {config.colors.textPrimary}" />
           </div>
           <div class="theme-info">
             <span class="theme-name">{config.name}</span>

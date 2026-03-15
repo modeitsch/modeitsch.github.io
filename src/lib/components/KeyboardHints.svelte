@@ -3,9 +3,9 @@
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
 
-  let visible = false;
-  let showHints = false;
-  let isMobile = false;
+  let visible = $state(false);
+  let showHints = $state(false);
+  let isMobile = $state(false);
 
   const shortcuts = [
     { key: 'H', description: 'Home', action: () => goto('/') },
@@ -72,7 +72,7 @@
   <!-- Hint indicator (bottom right) -->
   <button
     class="hint-button"
-    on:click={() => showHints = !showHints}
+    onclick={() => showHints = !showHints}
     aria-label="Toggle keyboard shortcuts"
   >
     <span class="kbd">?</span> shortcuts
@@ -90,8 +90,8 @@
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <div
       class="modal-overlay"
-      on:click={() => showHints = false}
-      on:keydown={(e) => e.key === 'Escape' && (showHints = false)}
+      onclick={() => showHints = false}
+      onkeydown={(e) => e.key === 'Escape' && (showHints = false)}
       role="dialog"
       aria-modal="true"
       aria-label="Keyboard shortcuts"
@@ -99,15 +99,15 @@
     >
       <div
         class="modal-content"
-        on:click|stopPropagation
-        on:keydown|stopPropagation
+        onclick={(e) => e.stopPropagation()}
+        onkeydown={(e) => e.stopPropagation()}
         role="document"
       >
         <div class="modal-header">
           <h2 class="modal-title">Keyboard Shortcuts</h2>
           <button
             class="close-button"
-            on:click={() => showHints = false}
+            onclick={() => showHints = false}
             aria-label="Close"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

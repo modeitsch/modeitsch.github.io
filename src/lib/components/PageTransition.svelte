@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { fade, fly } from 'svelte/transition';
 
-  export let duration = 300;
+  let { duration = 300, children } = $props();
 </script>
 
 {#key $page.url.pathname}
@@ -10,7 +10,7 @@
     in:fly={{ y: 20, duration, delay: duration }}
     out:fade={{ duration }}
   >
-    <slot />
+    {@render children()}
   </div>
 {/key}
 

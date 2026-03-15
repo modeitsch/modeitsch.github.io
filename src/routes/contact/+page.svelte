@@ -53,9 +53,10 @@
       <!-- Contact Methods -->
       <div class="contact-grid">
         {#each contactMethods as method}
+          {@const Icon = method.icon}
           <a href={method.href} class="contact-card">
             <div class="contact-icon" style="background: {method.gradient}">
-              <svelte:component this={method.icon} size={24} />
+              <Icon size={24} />
             </div>
             <div>
               <h3 class="contact-title">{method.title}</h3>

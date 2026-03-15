@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { github, githubStats, githubLoading } from '$lib/stores/github';
 
-  export let showStars = false;
+  let { showStars = false } = $props();
 
   onMount(() => {
     github.fetchStats();

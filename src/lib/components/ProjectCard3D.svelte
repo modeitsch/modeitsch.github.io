@@ -3,8 +3,7 @@
   import { browser } from '$app/environment';
   import { Github, ExternalLink, ArrowRight, Code } from 'lucide-svelte';
   
-  export let project;
-  export let index = 0;
+  let { project, index = 0 } = $props();
 
   let cardElement;
 

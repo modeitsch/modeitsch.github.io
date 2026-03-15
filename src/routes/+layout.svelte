@@ -10,6 +10,8 @@
   import { onMount } from 'svelte';
   import { initAudio } from '$lib/stores/sound.js';
 
+  let { children } = $props();
+
   onMount(() => {
     // Initialize audio on first user interaction
     const handleInteraction = () => {
@@ -36,7 +38,7 @@
   <Header />
   <main id="main-content" class="flex-1">
     <PageTransition>
-      <slot />
+      {@render children()}
     </PageTransition>
   </main>
   <Footer />

@@ -2,14 +2,14 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
 
-  let cursorX = 0;
-  let cursorY = 0;
-  let cursorDotX = 0;
-  let cursorDotY = 0;
-  let isHovering = false;
-  let isClicking = false;
-  let isVisible = false;
-  let isMobile = true;
+  let cursorX = $state(0);
+  let cursorY = $state(0);
+  let cursorDotX = $state(0);
+  let cursorDotY = $state(0);
+  let isHovering = $state(false);
+  let isClicking = $state(false);
+  let isVisible = $state(false);
+  let isMobile = $state(true);
 
   onMount(() => {
     if (!browser) return;
