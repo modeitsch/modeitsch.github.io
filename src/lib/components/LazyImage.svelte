@@ -1,12 +1,10 @@
 <script>
   import { onMount } from 'svelte';
 
-  export let src;
-  export let alt = '';
-  export let className = '';
+  let { src, alt = '', className = '' } = $props();
 
-  let loaded = false;
-  let error = false;
+  let loaded = $state(false);
+  let error = $state(false);
   let imgElement;
 
   onMount(() => {
@@ -46,8 +44,8 @@
       {src}
       {alt}
       class:loaded
-      on:load={handleLoad}
-      on:error={handleError}
+      onload={handleLoad}
+      onerror={handleError}
       loading="lazy"
     />
   {/if}

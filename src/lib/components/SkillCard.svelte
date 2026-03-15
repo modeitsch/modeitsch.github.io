@@ -1,10 +1,11 @@
 <script>
-  export let skill;
+  let { skill } = $props();
+  let SkillIcon = $derived(skill.icon);
 </script>
 
 <article class="skill-card">
   <div class="icon-container">
-    <svelte:component this={skill.icon} size={28} />
+    <SkillIcon size={28} />
   </div>
   <h3 class="skill-title">{skill.title}</h3>
   <p class="skill-description">{skill.description}</p>

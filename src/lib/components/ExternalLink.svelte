@@ -1,10 +1,9 @@
 <script>
   import { ExternalLink as ExternalLinkIcon } from 'lucide-svelte';
 
-  export let href;
-  export let className = '';
+  let { href, className = '', children } = $props();
 
-  let isLoading = false;
+  let isLoading = $state(false);
 
   function handleClick() {
     isLoading = true;
@@ -21,9 +20,9 @@
   rel="noopener noreferrer"
   class="external-link {className}"
   class:loading={isLoading}
-  on:click={handleClick}
+  onclick={handleClick}
 >
-  <slot />
+  {@render children()}
   <span class="link-icon" aria-hidden="true">
     {#if isLoading}
       <span class="loading-spinner"></span>

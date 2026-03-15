@@ -1,15 +1,22 @@
 <script>
   import BlogSearch from '$lib/components/BlogSearch.svelte';
 
-  export let data;
+  let { data } = $props();
 
-  let filteredPosts = data.posts;
-  let searchQuery = '';
+  let searchQuery = $state('');
 
-  function handleFilter(event) {
-    filteredPosts = event.detail.filteredPosts;
-    searchQuery = event.detail.searchQuery;
-  }
+  let filteredPosts = $derived(
+    searchQuery.trim()
+      ? data.posts.filter(post => {
+          const query = searchQuery.toLowerCase();
+          return (
+            post.title.toLowerCase().includes(query) ||
+            post.preview.toLowerCase().includes(query) ||
+            (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
+          );
+        })
+      : data.posts
+  );
 </script>
 
 <svelte:head>
@@ -34,7 +41,7 @@
   <div class="container mx-auto px-4">
     <div class="max-w-4xl mx-auto">
       <div class="search-container">
-        <BlogSearch posts={data.posts} bind:searchQuery on:filter={handleFilter} />
+        <BlogSearch posts={data.posts} bind:searchQuery />
       </div>
 
       <div class="posts-list">

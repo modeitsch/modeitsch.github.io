@@ -1,9 +1,11 @@
 <script>
-  export let title = "Moshe Deitsch - Developer & Guitarist";
-  export let description = "Full-stack developer passionate about creating beautiful, modern web experiences with cutting-edge technologies. Coding for breakfast, coding for lunch... playing guitar for brunch.";
-  export let url = "https://modeitsch.github.io";
-  export let image = "https://avatars.githubusercontent.com/u/41856538?v=4";
-  export let type = "website";
+  let {
+    title = "Moshe Deitsch - Developer & Guitarist",
+    description = "Full-stack developer passionate about creating beautiful, modern web experiences with cutting-edge technologies. Coding for breakfast, coding for lunch... playing guitar for brunch.",
+    url = "https://modeitsch.github.io",
+    image = "https://avatars.githubusercontent.com/u/41856538?v=4",
+    type = "website"
+  } = $props();
 
   // Structured data for Person (JSON-LD)
   const personSchema = {

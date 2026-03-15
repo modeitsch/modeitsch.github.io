@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import { Home, ArrowLeft, RefreshCw } from 'lucide-svelte';
+  import { House, ArrowLeft, RefreshCw } from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -57,18 +57,18 @@
         href="/"
         class="btn-primary inline-flex items-center justify-center space-x-2 group"
       >
-        <Home size={20} />
+        <House size={20} />
         <span>Go Home</span>
       </a>
       <button
-        on:click={() => history.back()}
+        onclick={() => history.back()}
         class="btn-secondary inline-flex items-center justify-center space-x-2 group"
       >
         <ArrowLeft size={20} class="group-hover:-translate-x-1 transition-transform" />
         <span>Go Back</span>
       </button>
       <button
-        on:click={() => location.reload()}
+        onclick={() => location.reload()}
         class="btn-secondary inline-flex items-center justify-center space-x-2 group"
       >
         <RefreshCw size={20} class="group-hover:rotate-180 transition-transform duration-500" />

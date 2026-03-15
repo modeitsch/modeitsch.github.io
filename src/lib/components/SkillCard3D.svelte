@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
   
-  export let skill;
-  export let index = 0;
+  let { skill, index = 0 } = $props();
+  let SkillIcon = $derived(skill.icon);
 
   let cardElement;
 
@@ -84,7 +84,7 @@
   <div class="card-content">
     <div class="icon-container">
       <div class="icon-bg"></div>
-      <svelte:component this={skill.icon} size={32} class="skill-icon" />
+      <SkillIcon size={32} class="skill-icon" />
     </div>
     <h3 class="skill-title">{skill.title}</h3>
     <p class="skill-description">{skill.description}</p>

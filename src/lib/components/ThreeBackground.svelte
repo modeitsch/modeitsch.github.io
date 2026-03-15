@@ -11,10 +11,10 @@
   let particles, particleGeometry, particleMaterial;
   let animationId;
   let mouseX = 0, mouseY = 0;
-  let threeFailed = false;
-  let showFallback = false;
-  let isLoading = false;
-  let isReady = false;
+  let threeFailed = $state(false);
+  let showFallback = $state(false);
+  let isLoading = $state(false);
+  let isReady = $state(false);
   let performanceSettings = {
     particles: 1000,
     quality: 'high',

@@ -1,6 +1,5 @@
 <script>
-  export let size = 'medium'; // 'small', 'medium', 'large'
-  export let message = 'Loading...';
+  let { size = 'medium', message = 'Loading...' } = $props(); // size: 'small', 'medium', 'large'
 </script>
 
 <div class="loading-container" aria-live="polite" role="status">

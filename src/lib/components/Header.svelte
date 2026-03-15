@@ -2,10 +2,10 @@
   import { page } from '$app/stores';
   import ThemePicker from './ThemePicker.svelte';
   import { playHoverSound, playClickSound } from '../stores/sound.js';
-  import { Menu, X, Home, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
+  import { Menu, X, House, User, Briefcase, Mail, BookOpen } from 'lucide-svelte';
 
-  let mobileMenuOpen = false;
-  $: currentPath = $page.url.pathname;
+  let mobileMenuOpen = $state(false);
+  let currentPath = $derived($page.url.pathname);
 
   function toggleMobileMenu() {
     playClickSound();
@@ -32,16 +32,16 @@
         <div class="ml-10 flex items-center space-x-10">
           <a
             href="/"
-            on:mouseenter={playHoverSound}
+            onmouseenter={playHoverSound}
             class="nav-link"
             class:active={currentPath === '/'}
           >
-            <Home size={16} />
+            <House size={16} />
             <span>Home</span>
           </a>
           <a
             href="/about"
-            on:mouseenter={playHoverSound}
+            onmouseenter={playHoverSound}
             class="nav-link"
             class:active={currentPath === '/about'}
           >
@@ -50,7 +50,7 @@
           </a>
           <a
             href="/projects"
-            on:mouseenter={playHoverSound}
+            onmouseenter={playHoverSound}
             class="nav-link"
             class:active={currentPath === '/projects'}
           >
@@ -59,7 +59,7 @@
           </a>
           <a
             href="/blog"
-            on:mouseenter={playHoverSound}
+            onmouseenter={playHoverSound}
             class="nav-link"
             class:active={currentPath.startsWith('/blog')}
           >
@@ -68,7 +68,7 @@
           </a>
           <a
             href="/contact"
-            on:mouseenter={playHoverSound}
+            onmouseenter={playHoverSound}
             class="nav-link"
             class:active={currentPath === '/contact'}
           >
@@ -85,8 +85,8 @@
         <!-- Mobile menu button -->
         <div class="md:hidden">
           <button
-            on:click={toggleMobileMenu}
-            on:mouseenter={playHoverSound}
+            onclick={toggleMobileMenu}
+            onmouseenter={playHoverSound}
             class="mobile-menu-btn"
             aria-label="Toggle mobile menu"
           >
@@ -107,16 +107,16 @@
           href="/"
           class="mobile-link"
           class:active={currentPath === '/'}
-          on:click={closeMobileMenu}
+          onclick={closeMobileMenu}
         >
-          <Home size={18} />
+          <House size={18} />
           <span>Home</span>
         </a>
         <a
           href="/about"
           class="mobile-link"
           class:active={currentPath === '/about'}
-          on:click={closeMobileMenu}
+          onclick={closeMobileMenu}
         >
           <User size={18} />
           <span>About</span>
@@ -125,7 +125,7 @@
           href="/projects"
           class="mobile-link"
           class:active={currentPath === '/projects'}
-          on:click={closeMobileMenu}
+          onclick={closeMobileMenu}
         >
           <Briefcase size={18} />
           <span>Projects</span>
@@ -134,7 +134,7 @@
           href="/blog"
           class="mobile-link"
           class:active={currentPath.startsWith('/blog')}
-          on:click={closeMobileMenu}
+          onclick={closeMobileMenu}
         >
           <BookOpen size={18} />
           <span>Blog</span>
@@ -143,7 +143,7 @@
           href="/contact"
           class="mobile-link"
           class:active={currentPath === '/contact'}
-          on:click={closeMobileMenu}
+          onclick={closeMobileMenu}
         >
           <Mail size={18} />
           <span>Contact</span>

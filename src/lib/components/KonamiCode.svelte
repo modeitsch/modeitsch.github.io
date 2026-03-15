@@ -11,9 +11,9 @@
     'KeyB', 'KeyA'
   ];
 
-  let inputSequence = [];
-  let showEasterEgg = false;
-  let confetti = [];
+  let inputSequence = $state([]);
+  let showEasterEgg = $state(false);
+  let confetti = $state([]);
 
   onMount(() => {
     if (!browser) return;
@@ -94,16 +94,16 @@
   <!-- Easter Egg Modal -->
   <div
     class="modal-overlay"
-    on:click={closeEasterEgg}
-    on:keydown={(e) => e.key === 'Escape' && closeEasterEgg()}
+    onclick={closeEasterEgg}
+    onkeydown={(e) => e.key === 'Escape' && closeEasterEgg()}
     role="dialog"
     aria-modal="true"
     tabindex="-1"
   >
     <div
       class="easter-egg-card"
-      on:click|stopPropagation
-      on:keydown|stopPropagation
+      onclick={(e) => e.stopPropagation()}
+      onkeydown={(e) => e.stopPropagation()}
       role="document"
     >
       <div class="card-inner">
@@ -123,7 +123,7 @@
         <p class="fun-fact">
           Fun fact: I really do code while eating breakfast!
         </p>
-        <button class="btn-primary" on:click={closeEasterEgg}>
+        <button class="btn-primary" onclick={closeEasterEgg}>
           Awesome!
         </button>
       </div>

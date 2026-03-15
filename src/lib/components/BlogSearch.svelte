@@ -1,16 +1,12 @@
 <script>
   import { Search, X } from 'lucide-svelte';
-  import { createEventDispatcher } from 'svelte';
 
-  export let posts = [];
-  export let searchQuery = '';
-
-  const dispatch = createEventDispatcher();
+  let { posts = [], searchQuery = $bindable('') } = $props();
 
   let inputElement;
-  let isFocused = false;
+  let isFocused = $state(false);
 
-  $: filteredPosts = searchQuery.trim()
+  let filteredPosts = $derived(searchQuery.trim()
     ? posts.filter(post => {
         const query = searchQuery.toLowerCase();
         return (
@@ -19,11 +15,7 @@
           (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
         );
       })
-    : posts;
-
-  $: {
-    dispatch('filter', { filteredPosts, searchQuery });
-  }
+    : posts);
 
   function clearSearch() {
     searchQuery = '';
@@ -44,9 +36,9 @@
   <input
     bind:this={inputElement}
     bind:value={searchQuery}
-    on:focus={() => isFocused = true}
-    on:blur={() => isFocused = false}
-    on:keydown={handleKeydown}
+    onfocus={() => isFocused = true}
+    onblur={() => isFocused = false}
+    onkeydown={handleKeydown}
     type="text"
     placeholder="Search posts..."
     aria-label="Search blog posts"
@@ -55,7 +47,7 @@
   {#if searchQuery}
     <button
       class="clear-button"
-      on:click={clearSearch}
+      onclick={clearSearch}
       aria-label="Clear search"
     >
       <X size={18} />
@@ -66,7 +58,7 @@
 {#if searchQuery && filteredPosts.length === 0}
   <div class="no-results">
     <p>No posts found matching "<strong>{searchQuery}</strong>"</p>
-    <button on:click={clearSearch} class="clear-link">Clear search</button>
+    <button onclick={clearSearch} class="clear-link">Clear search</button>
   </div>
 {:else if searchQuery}
   <p class="results-count">

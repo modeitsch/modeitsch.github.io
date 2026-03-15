@@ -1,7 +1,7 @@
 <script>
   import { Github, ExternalLink } from 'lucide-svelte';
 
-  export let project;
+  let { project } = $props();
 </script>
 
 <article class="project-card">

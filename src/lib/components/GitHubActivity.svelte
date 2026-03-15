@@ -4,7 +4,7 @@
   import { github, githubEvents, githubLoading, githubError } from '$lib/stores/github';
   import type { GitHubEvent } from '$lib/stores/github';
 
-  let mounted = false;
+  let mounted = $state(false);
 
   onMount(() => {
     mounted = true;
@@ -101,13 +101,14 @@
     <div class="error-state">
       <Github size={40} />
       <p>Unable to load activity</p>
-      <button on:click={() => github.fetchEvents()} class="retry-button">
+      <button onclick={() => github.fetchEvents()} class="retry-button">
         Try again
       </button>
     </div>
   {:else if $githubEvents.length > 0}
     <div class="activity-list">
       {#each $githubEvents.slice(0, 6) as event (event.id)}
+        {@const EventIcon = getEventIcon(event.type)}
         <a
           href={getRepoUrl(event)}
           target="_blank"
@@ -115,7 +116,7 @@
           class="activity-item"
         >
           <div class="event-icon">
-            <svelte:component this={getEventIcon(event.type)} size={16} />
+            <EventIcon size={16} />
           </div>
           <div class="event-content">
             <p class="event-description">

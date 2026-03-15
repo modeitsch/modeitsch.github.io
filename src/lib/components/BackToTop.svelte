@@ -3,8 +3,8 @@
   import { browser } from '$app/environment';
   import { ArrowUp } from 'lucide-svelte';
 
-  let isVisible = false;
-  let scrollProgress = 0;
+  let isVisible = $state(false);
+  let scrollProgress = $state(0);
 
   onMount(() => {
     if (!browser) return;
@@ -35,7 +35,7 @@
 
 {#if isVisible}
   <button
-    on:click={scrollToTop}
+    onclick={scrollToTop}
     class="back-to-top"
     aria-label="Scroll to top"
     title="Back to top"
