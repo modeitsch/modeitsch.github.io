@@ -1,4 +1,4 @@
-import { writable, derived } from 'svelte/store';
+import { writable, derived, get } from 'svelte/store';
 import { browser } from '$app/environment';
 
 const GITHUB_USERNAME = 'modeitsch';
@@ -47,7 +47,8 @@ const initialState: GitHubState = {
 };
 
 function createGitHubStore() {
-  const { subscribe, set, update } = writable<GitHubState>(initialState);
+  const store = writable<GitHubState>(initialState);
+  const { subscribe, set, update } = store;
 
   return {
     subscribe,
@@ -55,13 +56,12 @@ function createGitHubStore() {
     async fetchStats() {
       if (!browser) return;
 
-      update(state => {
-        // Check cache
-        if (state.stats && state.lastFetched && Date.now() - state.lastFetched < CACHE_DURATION) {
-          return state;
-        }
-        return { ...state, loading: true, error: null };
-      });
+      const current = get(store);
+      if (current.stats && current.lastFetched && Date.now() - current.lastFetched < CACHE_DURATION) {
+        return;
+      }
+
+      update(state => ({ ...state, loading: true, error: null }));
 
       try {
         // Fetch user stats
@@ -103,6 +103,11 @@ function createGitHubStore() {
     async fetchEvents() {
       if (!browser) return;
 
+      const current = get(store);
+      if (current.events.length && current.lastFetched && Date.now() - current.lastFetched < CACHE_DURATION) {
+        return;
+      }
+
       update(state => ({ ...state, loading: true, error: null }));
 
       try {
@@ -113,7 +118,8 @@ function createGitHubStore() {
         update(state => ({
           ...state,
           events,
-          loading: false
+          loading: false,
+          lastFetched: Date.now()
         }));
       } catch (error) {
         update(state => ({

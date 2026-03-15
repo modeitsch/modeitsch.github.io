@@ -186,8 +186,6 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 6rem 0;
-    background: var(--color-background);
   }
 
   .hero-content {
@@ -294,33 +292,8 @@
     }
   }
 
-  .section {
-    padding: 5rem 0;
-    background: var(--color-background);
-  }
-
-  .section-alt {
-    background: var(--color-background-secondary);
-  }
-
   .section-header {
-    text-align: center;
     margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.125rem;
-    color: var(--color-text-secondary);
-    max-width: 40rem;
-    margin: 0 auto;
   }
 
   .tech-stack {
@@ -332,31 +305,5 @@
     font-size: 0.875rem;
     color: var(--color-text-muted);
     margin-bottom: 1.5rem;
-  }
-
-  .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .tech-tag {
-    padding: 0.5rem 1rem;
-    background: var(--color-surface);
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: 9999px;
-    border: 1px solid var(--color-border);
-    transition: border-color 150ms ease;
-  }
-
-  .tech-tag:hover {
-    border-color: var(--color-accent);
-  }
-
-  .text-accent {
-    color: var(--color-accent);
   }
 </style>
