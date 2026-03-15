@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { browser } from '$app/environment';
 
 // Store for sound enabled state
@@ -17,11 +17,7 @@ function getAudioContext() {
 // Generate a subtle click sound using Web Audio API
 export function playHoverSound() {
   if (!browser) return;
-
-  let enabled = true;
-  soundEnabled.subscribe(v => enabled = v)();
-
-  if (!enabled) return;
+  if (!get(soundEnabled)) return;
 
   try {
     const ctx = getAudioContext();
@@ -52,11 +48,7 @@ export function playHoverSound() {
 // Play a slightly different sound for clicks
 export function playClickSound() {
   if (!browser) return;
-
-  let enabled = true;
-  soundEnabled.subscribe(v => enabled = v)();
-
-  if (!enabled) return;
+  if (!get(soundEnabled)) return;
 
   try {
     const ctx = getAudioContext();

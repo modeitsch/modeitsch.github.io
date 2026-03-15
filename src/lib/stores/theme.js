@@ -202,8 +202,3 @@ export function toggleDarkMode() {
     return current;
   });
 }
-
-// Legacy toggle function for compatibility
-export function toggleTheme() {
-  cycleTheme();
-}

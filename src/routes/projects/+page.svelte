@@ -68,55 +68,7 @@
 
 <style>
   .hero-section {
-    padding: 6rem 0 4rem;
-    background: var(--color-background);
-  }
-
-  .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .text-accent {
-    color: var(--color-accent);
-  }
-
-  .hero-description {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .hero-tag {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-  }
-
-  .section {
-    padding: 5rem 0;
-    background: var(--color-background);
-  }
-
-  .section-alt {
-    background: var(--color-background-secondary);
+    padding-bottom: 4rem;
   }
 
   .cta-card {

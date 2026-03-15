@@ -1,5 +1,5 @@
 <script>
-  import { Mail, Github, Linkedin, Download } from 'lucide-svelte';
+  import { Mail, Github, Linkedin } from 'lucide-svelte';
   import SkillCard from '$lib/components/SkillCard.svelte';
   import { experiences, allTechnologies, aboutSkills } from '$lib/data';
 
@@ -22,7 +22,7 @@
             About <span class="text-accent">Me</span>
           </h1>
           <p class="hero-description">
-            I'm a passionate full-stack developer with over 4 years of experience creating
+            I'm a passionate full-stack developer with over 6 years of experience creating
             modern web applications and user experiences.
           </p>
           <p class="hero-secondary">
@@ -37,10 +37,6 @@
               <Mail size={20} />
               <span>Get In Touch</span>
             </a>
-            <button class="btn-secondary">
-              <Download size={20} />
-              <span>Download CV</span>
-            </button>
           </div>
         </div>
 
@@ -50,6 +46,9 @@
               src="https://avatars.githubusercontent.com/u/41856538?v=4"
               alt="Moshe Deitsch"
               class="profile-image"
+              width="320"
+              height="320"
+              loading="lazy"
             />
           </div>
         </div>
@@ -160,11 +159,6 @@
 </section>
 
 <style>
-  .hero-section {
-    padding: 6rem 0;
-    background: var(--color-background);
-  }
-
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -188,18 +182,7 @@
     }
   }
 
-  .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1.5rem;
-  }
-
   .hero-description {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
     margin-bottom: 1rem;
   }
 
@@ -250,37 +233,6 @@
     object-fit: cover;
   }
 
-  .section {
-    padding: 5rem 0;
-    background: var(--color-background);
-  }
-
-  .section-alt {
-    background: var(--color-background-secondary);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .section-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.125rem;
-    color: var(--color-text-secondary);
-  }
-
-  .text-accent {
-    color: var(--color-accent);
-  }
-
   .tech-section {
     margin-top: 4rem;
     text-align: center;
@@ -298,28 +250,6 @@
     font-size: 1rem;
     color: var(--color-text-secondary);
     margin-bottom: 1.5rem;
-  }
-
-  .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .tech-tag {
-    padding: 0.5rem 1rem;
-    background: var(--color-surface);
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: 9999px;
-    border: 1px solid var(--color-border);
-    transition: border-color 150ms ease;
-  }
-
-  .tech-tag:hover {
-    border-color: var(--color-accent);
   }
 
   .experience-list {

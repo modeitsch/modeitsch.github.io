@@ -1,3 +1,8 @@
+---
+title: Hello World
+date: 2025-01-15
+---
+
 # Hello World
 
 Welcome to the sample blog post! This is an example of how you can structure your content using Markdown in your SvelteKit blog.
