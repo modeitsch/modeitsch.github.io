@@ -1,0 +1,1 @@
+import{D as e,O as t,Y as n,b as r,i,o as a}from"./yz30eY9C.js";import{t as o}from"./BmCEHjUh.js";function s(s,c){let l=i(c,[`children`,`$$slots`,`$$events`,`$$legacy`]),u=[[`path`,{d:`M18 6 6 18`}],[`path`,{d:`m6 6 12 12`}]];o(s,a({name:`x`},()=>l,{get iconNode(){return u},children:(i,a)=>{var o=t();r(n(o),c,`default`,{},null),e(i,o)},$$slots:{default:!0}}))}export{s as t};
